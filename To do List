@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+.task-item {
+display: flex;
+align-items: center;
+margin: 5px 0;
+}
+.completed {
+text-decoration: line-through;
+color: gray;
+}
+button {
+margin-left: 5px;
+}
+</style>
+</head>
+<body>
+<h1>To-Do List</h1>
+<input type="text" id="taskInput" placeholder="Enter a new task">
+<button id="addTaskButton">Add Task</button>
+<ul id="taskList"></ul>
+
+<script>
+// Get references to DOM elements
+const taskInput = document.getElementById("taskInput");
+const addTaskButton = document.getElementById("addTaskButton");
+const taskList = document.getElementById("taskList");
+
+// Function to add a new task
+function addTask() {
+// Get task text from input field
+const taskText = taskInput.value.trim();
+if (taskText === "") return; // Prevent empty tasks
+
+// Create a new list item for the task
+const taskItem = document.createElement("li");
+taskItem.classList.add("task-item");
+
+// Create a span to hold the task text
+const taskSpan = document.createElement("span");
+taskSpan.textContent = taskText;
+
+// Create a "Complete" button
+const completeButton = document.createElement("button");
+completeButton.textContent = "Complete";
+completeButton.onclick = () => {
+taskSpan.classList.toggle("completed");
+};
+
+// Create a "Delete" button
+const deleteButton = document.createElement("button");
+deleteButton.textContent = "Delete";
+deleteButton.onclick = () => {
+taskList.removeChild(taskItem);
+};
+
+// Append elements to the task item
+taskItem.appendChild(taskSpan);
+taskItem.appendChild(completeButton);
+taskItem.appendChild(deleteButton);
+
+// Add the task item to the list
+taskList.appendChild(taskItem);
+
+// Clear the input field
+taskInput.value = "";
+}
+
+// Add event listener to the "Add Task" button
+addTaskButton.addEventListener("click", addTask);
+</script>
+</body>
+</html>
+
+12:45 PM
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessing elements using DOM</title>
+</head>
+<body>
+<p id="p1" class="para">This is paragraph 1</p>
+<p id="p2" class="para">This is paragraph 2</p>
+<p id="p3" class="para">This is paragraph 3</p>
+<script>
+document.getElementById("p3").innerText ="this is some paragraph"
+
+const elements = document.getElementsByClassName("para");
+for(let i=0; i<elements.length; i++){
+elements[i].innerText = "hello"
+}
+
+const elements1 = document.getElementsByTagName("p");
+for(let i=0; i<elements1.length; i++){
+elements1[i].innerText = "hello"
+}
+
+document.querySelector("p").innerText="hello";
+
+const elements2 = document.querySelectorAll(".para");
+for(let i=0; i<elements2.length; i++){
+elements2[i].innerText = "hello"
+}
+</script>
+</body>
+</html>
